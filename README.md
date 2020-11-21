@@ -47,7 +47,8 @@ Features:
 ### Summary view (up to 4 channels)
 Image shows data received from channel 1-3. Low battery warning on 3. Critical battery warning and lost-signal on 2.
  
-![Summary](https://user-images.githubusercontent.com/4630866/99881511-32e78800-2c12-11eb-9359-a8b6a553febb.png) 
+![Summary](https://user-images.githubusercontent.com/4630866/99881511-32e78800-2c12-11eb-9359-a8b6a553febb.png)
+
 Over voltage shows as -----, under voltage as -0.00, no data is just blank
 
 ### Single channel view
