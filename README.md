@@ -5,6 +5,7 @@ Range is a few meters to 100m depending on how well the radio module is isolated
 Developed on Auduino
 
 ## Notable design features
+* Transmitter fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
 * Pin saving by multiple use of microcontroller pins:
   * SPI chip-enable, LED drive, negative input test mode and switch A/B detection on one pin
   * MISO and analog input on one pin
@@ -58,3 +59,11 @@ Over voltage shows as -----, under voltage as -0.00, no data is just blank
 ![Single view after a few seconds](https://user-images.githubusercontent.com/4630866/99881507-2c591080-2c12-11eb-9e34-ab5b6b527589.png)
  
  The lost signal and battery warnings appear the same as in the Summary view.
+
+##Repository overview
+The repositry contains C++ code for the Arduino IDE and circuit diagrams. The Transmitter and Receiver are in seperate folders. Read through the options to set and the compile settings guidance.
+They have been complied on Arduino 1.8.13.
+
+### Transmitter code
+One .ino file. Uses SPI and FR24 and avr/sleep libraries.
+Compiled with with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (the latest as at 21 Nov 2020)
