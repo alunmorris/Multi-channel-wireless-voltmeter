@@ -49,8 +49,7 @@ Features:
  Row 2: '3 vv.vv*?4 nn.nn*?
  where vv.vv = voltage. *=battery alert, ? = timeout AKA lost signal alert. 16 pixel rows
  Over voltage shows as -----, under voltage as -0.00, no data is just blank
- ![Display](https://drive.google.com/uc?export=view&id=1QewwbXYfmGH647nRajY-oNNzYLNZezjR)
- 
+![Summary](https://user-images.githubusercontent.com/4630866/99881511-32e78800-2c12-11eb-9359-a8b6a553febb.png) 
  
 ### Single channel display
  Row 1: N vv.vv *   Min
