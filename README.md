@@ -5,7 +5,8 @@ Range is a few meters to 100m depending on how well the radio module is isolated
 Developed on Auduino
 
 ## Notable design features
-* Transmitter fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
+* Transmitter code fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
+* Display code fits on ATMEGA168P or 328P eg an Arduino Uno or nano.
 * Pin saving by multiple use of microcontroller pins:
   * SPI chip-enable, LED drive, negative input test mode and switch A/B detection on one pin
   * MISO and analog input on one pin
@@ -37,7 +38,7 @@ Features:
 * LED flashes 20 times if radio IC not responding on power-up
 * LED flashes briefly on each failed data transmission
 
-### Receiver operation
+### Display operation
 * Displays version info, radio channel and lost-signal timeout on power-up/ reset
 * Then shows Summary view of all available voltage channels
 * Each channel voltage field is blank until data received
@@ -60,10 +61,15 @@ Over voltage shows as -----, under voltage as -0.00, no data is just blank
  
  The lost signal and battery warnings appear the same as in the Summary view.
 
-##Repository overview
+## Repository overview
 The repositry contains C++ code for the Arduino IDE and circuit diagrams. The Transmitter and Receiver are in seperate folders. Read through the options to set and the compile settings guidance.
 They have been complied on Arduino 1.8.13.
 
 ### Transmitter code
-One .ino file. Uses SPI and FR24 and avr/sleep libraries.
-Compiled with with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (the latest as at 21 Nov 2020)
+One .ino file. Uses SPI, RF24 and avr/sleep libraries.
+Compiled to 3986 bytes with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (the latest as at 21 Nov 2020)
+
+### Display Code
+One .ino file and two .h files (in /library) for the custom font. Uses SPI, RF24, Wire, SSD1306Ascii and SSD1306AsciiWire libraries.
+Compiled to 14118 bytes with the noise filter and 'show Vdd' options used.
+
