@@ -46,7 +46,9 @@ Features:
 
 ### Summary display (up to 4 channels)
  Row 1: '1 vv.vv*?2 nn.nn*?
+ 
  Row 2: '3 vv.vv*?4 nn.nn*?
+ 
  where vv.vv = voltage. *=battery alert, ? = timeout AKA lost signal alert. 16 pixel rows
  Over voltage shows as -----, under voltage as -0.00, no data is just blank
  
@@ -54,8 +56,11 @@ Features:
  
 ### Single channel display
  Row 1: N vv.vv *   Min
+ 
  Row 2:             mm.mm
+ 
  Row 3:         ?   Max
+ 
  Row 4: Bat b.bb    mm.mm
  
  ![Single view small-](https://user-images.githubusercontent.com/4630866/99881510-32e78800-2c12-11eb-8216-1242ac274dff.png)
