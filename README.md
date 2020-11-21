@@ -37,38 +37,22 @@ Features:
 
 ## Receiver operation
 * Displays version info, radio channel and lost-signal timeout on power-up/ reset
-* Then shows Summary display of all available voltage channels
+* Then shows Summary view of all available voltage channels
 * Each channel voltage field is blank until data received
 * Low battery, critical battery and lost signal indication
-* Single channel display shows voltage, Min, Max, low battery, critical battery and lost signal
-* Single display also shows Transmitter battery voltage (Vdd) for a few seconds
+* Single channel view shows voltage, Min, Max, low battery, critical battery and lost signal
+* Single view also shows Transmitter battery voltage (Vdd) for a few seconds
 * Mode button rotates around display modes from Summary to each single channel in rotation
 
-### Summary display (up to 4 channels)
- Row 1: '1 vv.vv*?2 nn.nn*?
- 
- Row 2: '3 vv.vv*?4 nn.nn*?
- 
- where vv.vv = voltage. *=battery alert, ? = timeout AKA lost signal alert. 16 pixel rows
- Over voltage shows as -----, under voltage as -0.00, no data is just blank
+### Summary view (up to 4 channels)
+Image shows data received from channel 1-3. Low battery warning on 3. Critical battery warning and lost-signal on 2.
  
 ![Summary](https://user-images.githubusercontent.com/4630866/99881511-32e78800-2c12-11eb-9359-a8b6a553febb.png) 
- 
-### Single channel display
- Row 1: N vv.vv *   Min
- 
- Row 2:             mm.mm
- 
- Row 3:         ?   Max
- 
- Row 4: Bat b.bb    mm.mm
- 
- ![Single view small-](https://user-images.githubusercontent.com/4630866/99881510-32e78800-2c12-11eb-8216-1242ac274dff.png)
- ![Single view no Bat small-](https://user-images.githubusercontent.com/4630866/99881507-2c591080-2c12-11eb-9e34-ab5b6b527589.png)
- 
- where N=channel, nn.nn = volatage,, mm.mm= min or max voltage, 
- b.bb=sender's Vdd (bat) voltage (appears for a few seconds only to reduce clutter)
- Rows are 8 pixels high in Single view, though N and vv.vv are taller.
+Over voltage shows as -----, under voltage as -0.00, no data is just blank
 
-A customised font file is used with battery state and signal timeout chars
-Tested using Arduino nano and Auduino IDE 1.8.13
+### Single channel view
+
+![Single view](https://user-images.githubusercontent.com/4630866/99881510-32e78800-2c12-11eb-8216-1242ac274dff.png)
+![Single view after a few seconds](https://user-images.githubusercontent.com/4630866/99881507-2c591080-2c12-11eb-9e34-ab5b6b527589.png)
+ 
+ The lost signal and battery warnings appear the same as in the Summary view.
