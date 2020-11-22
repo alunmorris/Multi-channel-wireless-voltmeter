@@ -76,4 +76,11 @@ Compiled to 14118 bytes with 'noise filter' and 'show Vdd' options used.
 ### Circuit diagrams
 In eeschema/Kicad .sch format.
 
+#### Transmitter
+
 ![Transmitter](https://user-images.githubusercontent.com/4630866/99911591-6814d880-2ced-11eb-897c-5faba158c2f9.png)
+
+#### Receiver
+
+![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
+
