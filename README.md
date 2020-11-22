@@ -71,5 +71,9 @@ Compiled to 3986 bytes with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (t
 
 ### Display Code
 One .ino file and two .h files (in /library) for the custom font. Uses SPI, RF24, Wire, SSD1306Ascii and SSD1306AsciiWire libraries.
-Compiled to 14118 bytes with the noise filter and 'show Vdd' options used.
+Compiled to 14118 bytes with 'noise filter' and 'show Vdd' options used.
 
+### Circuit diagrams
+In eeschema/Kicad .sch format.
+
+![Transmitter](https://user-images.githubusercontent.com/4630866/99911591-6814d880-2ced-11eb-897c-5faba158c2f9.png)
