@@ -101,7 +101,7 @@ I could not get the MPU's power-down mode to work but it would only save 6uA max
 
 The MPU was taking over 2mA in sleep until I noticed I had not diabled the brown-out detector (BoD). Read the compile advice in the source code onhow to do this.
 
-I specify 16V for C2 because lower voltage ones can drain several uA (so I read).
+Use a 16V rating for C2 (if electrolytic) because lower voltage ones can drain several uA (so I read).
 
 **Multi-use of PA7**: I orginally modified the RF24 library for U2 to use only 4 pins (SCKM MOSIM MISO & CSN) to drive U2. CE was tied high. CE turns the chip on and off and I found that even when powered-down with the library call the chip used far more than the specified idle current, and using a modifed library gave update problems.
 There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It also needs more components.
