@@ -7,11 +7,11 @@ Developed on Auduino
 ## Notable design features
 * Transmitter code fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
 * Display code fits on ATMEGA168P or 328P eg an Arduino Uno or nano.
-* Pin saving by multiple use of microcontroller pins:
+* Pin saving by multiple use of microcontroller (MPU) pins:
   * SPI chip-enable, LED drive, negative input test mode and switch A/B detection on one pin
   * MISO and analog input on one pin
   * UPDI programming and switch input on one pin (without needing a high-voltage UPDI programmer to re-program)
-* Measuring microcontroller Vdd without using an input pin
+* Measuring MPU Vdd without using an input pin
 * Very-low power sleep mode of ATTINY 0 and 1 series
 * Very small form factors
 
@@ -34,7 +34,7 @@ Features:
 * Configurable auto power-off period. LED flashes 8 times when powering off.
 * Powers off if battery below critical voltage - configurable
 * Disable auto power-off by long press of On button. LED flashes 4 times.
-* Microntoller sums four voltage readings to reduce noise and to improved resolution of the 10-bit ADC
+* MPU sums four voltage readings to reduce noise and to improved resolution of the 10-bit ADC
 * LED flashes 20 times if radio IC not responding on power-up
 * LED flashes briefly on each failed data transmission
 
@@ -80,6 +80,15 @@ In eeschema/Kicad .sch format.
 
 ![Transmitter](https://user-images.githubusercontent.com/4630866/99911591-6814d880-2ced-11eb-897c-5faba158c2f9.png)
 
+**How it works**
+**Vin** is divided by R2/(R4+R5)so that 20V becomes 1.1V - the ADC reference. R4 calibrates the result.
+Negative input test: after the ADC is read, MPU pin PA7 is switched from low to high. This is divided and raises the ADC pin by ~2mV or around 2LSB for the 10 bit resolution. If Vin =0V the ADC wil now read positive and we deduce that Vin was not negative. 
+The ADC reading is scaled to 32767 (=20V) and transmitted. along with all other info every time (including version no) for simplicity.
+
+**Switch input:** shared with the programming pin UPDI. UPDI can be used normally as an input without blowing fuses (meaning a HV programmer is needed to re-program). UPDI has an internal pull up of 20-50kohm. I tried a switch connected to ground but contact bounce can occasionally trip the MPU's programming circuit on. The spec says the MPU should automatically exit a bogus triggering after 10-20ms but it often does not. The MPU keeps operating normally but draws over 1mA in sleep mode. The work around here is to use the ADC to read the UPDI pin, with the internal reference changed to Vdd. R1 and R3 are chosen so that UPDI does not fall below 0.6 of Vdd for the wide range of the internal pull-up even when both switches are pressed.
+PA7 is low when the switch input is read so either switch will be detected. If a switch is detected, PA7 is then set high and UPDI read again. If the reading is near 1023 then it must be SW2 pressed.
+
+**Power:** the operating range of a rechargeable lithium cell is 3.6-4.2V. There are low drop-out regulator that can manage a 0.6V dropand have <10uA quiescent current but a diode works fine if a large decoupling capacitor is used. The 0.6V typical diode drop brings the voltage within U2's rating of 3-3.6V. Well it would do with the nominal drop, but at the low current taken the drop is ~0.5V so the spec is exceeded by 0.1V on a full cell. Very unlikly to cause a problem.
 #### Receiver
 
 ![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
