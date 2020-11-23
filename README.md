@@ -63,14 +63,17 @@ Over voltage shows as -----, under voltage as -0.00, no data is just blank
 
 ## Repository overview
 The repositry contains C++ code for the Arduino IDE and circuit diagrams. The Transmitter and Receiver are in seperate folders. Read through the options to set and the compile settings guidance.
+
 They have been complied on Arduino 1.8.13.
 
 ### Transmitter code
 One .ino file. Uses SPI, RF24 and avr/sleep libraries.
+
 Compiled to 3986 bytes with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (the latest as at 21 Nov 2020)
 
 ### Display Code
 One .ino file and two .h files (in /library) for the custom font. Uses SPI, RF24, Wire, SSD1306Ascii and SSD1306AsciiWire libraries.
+
 Compiled to 14118 bytes with 'noise filter' and 'show Vdd' options used.
 
 ### Circuit diagrams
@@ -82,24 +85,33 @@ In eeschema/Kicad .sch format.
 
 **How it works**
 **Vin** is divided by R2/(R4+R5)so that 20V becomes 1.1V - the ADC reference. R4 calibrates the result.
+
 Negative input test: after the ADC is read, MPU pin PA7 is switched from low to high. This is divided and raises the ADC pin by ~2mV or around 2LSB for the 10 bit resolution. If Vin =0V the ADC wil now read positive and we deduce that Vin was not negative. 
+
 The ADC reading is scaled to 32767 (=20V) and transmitted. along with all other info every time (including version no) for simplicity.
 
 **Switch input:** shared with the programming pin UPDI. UPDI can be used normally as an input without blowing fuses (meaning a HV programmer is needed to re-program). UPDI has an internal pull up of 20-50kohm. I tried a switch connected to ground but contact bounce can occasionally trip the MPU's programming circuit on. The spec says the MPU should automatically exit a bogus triggering after 10-20ms but it often does not. The MPU keeps operating normally but draws over 1mA in sleep mode. The work around here is to use the ADC to read the UPDI pin, with the internal reference changed to Vdd. R1 and R3 are chosen so that UPDI does not fall below 0.6 of Vdd for the wide range of the internal pull-up even when both switches are pressed.
+
 PA7 is low when the switch input is read so either switch will be detected. If a switch is detected, PA7 is then set high and UPDI read again. If the reading is near 1023 then it must be SW2 pressed.
 
 **Power:** the operating range of a rechargeable lithium cell is 3.6-4.2V. There are low drop-out regulator that can manage a 0.6V dropand have <10uA quiescent current but a diode works fine if a large decoupling capacitor is used. The 0.6V typical diode drop brings the voltage within U2's rating of 3-3.6V. Well it would do with the nominal drop, but at the low current taken the drop is ~0.5V so the spec is exceeded by 0.1V on a full cell. Very unlikly to cause a problem.
 I tested current draw with a few cheap NRF24L01+ modules from a batch I bought from Aliexpress. The receiver took 30-40uA during sleep. The MPU should take 6uA max in idle mode so the radio modules were taking far more tha the 6uA maximum in the spec. I read that many cheap Chinese ones are clones of the Nordic chip, some with far worse power use than mine.
+
 I could not get the MPU's power-down mode to work but it would only save 6uA max anyway.
+
 The MPU was taking over 2mA in sleep until I noticed I had not diabled the brown-out detector (BoD). Read the compile advice in the source code onhow to do this.
-I specify 16V for C2 because lower voltage ones can have a significant constant current.
+
+I specify 16V for C2 because lower voltage ones can drain several uA (so I read).
 
 **Multi-use of PA7**: I orginally modified the RF24 library for U2 to use only 4 pins (SCKM MOSIM MISO & CSN) to drive U2. CE was tied high. CE turns the chip on and off and I found that even when powered-down with the library call the chip used far more than the specified idle current, and using a modifed library gave update problems.
-There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It al;so needs more components.
+There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It also needs more components.
+
 It was cleaner to use the normal 5-pin connectin and re-use pins. Using MISO as an ADC input when CSN is high was straighforward - U2 dos not drive MISO then. CE is more complex.
+
 U2 doesn't mind if CE is pulsed high when idle so I use PA7 = CE for dring the LED, driving negative input test bias and for reading SW2.
 
 **Programming header J1:** I've standardised on this 0.1in pitch male header for my AVR series 0/1 projects. The cut off pins 3 provides keying (the programmer has a blanked hole for that pin). The programmer drives pin 2 with 3.3V to power targets if needed. A self powered target can use pin 2 for something else. Here it is Vin.
+
 I have extended the header for another project so that one header does all interfacing as well as programming. UPDI remains at one end so that position keying is maintained. Maybe I should have made UPDI pin 1 but it's conventional to make ground pin 1.
 
 #### Receiver
