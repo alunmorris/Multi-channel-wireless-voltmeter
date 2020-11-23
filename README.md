@@ -92,6 +92,7 @@ PA7 is low when the switch input is read so either switch will be detected. If a
 I tested current draw with a few cheap NRF24L01+ modules from a batch I bought from Aliexpress. The receiver took 30-40uA during sleep. The MPU should take 6uA max in idle mode so the radio modules were taking far more tha the 6uA maximum in the spec. I read that many cheap Chinese ones are clones of the Nordic chip, some with far worse power use than mine.
 I could not get the MPU's power-down mode to work but it would only save 6uA max anyway.
 The MPU was taking over 2mA in sleep until I noticed I had not diabled the brown-out detector (BoD). Read the compile advice in the source code onhow to do this.
+I specify 16V for C2 because lower voltage ones can have a significant constant current.
 
 **Multi-use of PA7**: I orginally modified the RF24 library for U2 to use only 4 pins (SCKM MOSIM MISO & CSN) to drive U2. CE was tied high. CE turns the chip on and off and I found that even when powered-down with the library call the chip used far more than the specified idle current, and using a modifed library gave update problems.
 There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It al;so needs more components.
@@ -105,4 +106,4 @@ I have extended the header for another project so that one header does all inter
 
 ![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
 
-This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. U3 has its own regulator to decouple it from digital noise on the OLED power rail. C2 is larger than the 10uF usually used to get acceptable radio range but these caps are tiny and cheap.
+This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. U3 has its own regulator to decouple it from digital noise on the OLED power rail.
