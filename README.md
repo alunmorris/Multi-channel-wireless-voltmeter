@@ -1,5 +1,5 @@
 # Multi-channel-wireless-voltmeter
-A multi-channel wireless voltmeter display using ATTINY402, Arduino nano, NRF24L01+ and 128x32 I2C OLED.
+A multi-channel wireless (2.4GHz) voltmeter display using ATTINY402, Arduino nano, NRF24L01+ and 128x32 I2C OLED.
 The transmitter is optimised for low power and will run from a battery for weeks or months depending on useage, sample frequency and of course battery capacity.
 Range is a few meters to 100m depending on how well the radio module is isolated from the controller, and the power setting.
 Developed on Auduino
@@ -10,7 +10,7 @@ Developed on Auduino
 * Pin saving by multiple use of microcontroller pins:
   * SPI chip-enable, LED drive, negative input test mode and switch A/B detection on one pin
   * MISO and analog input on one pin
-  * UPDI programming and switch input on one pin (without needing a high-voltage UPDI programmer)
+  * UPDI programming and switch input on one pin (without needing a high-voltage UPDI programmer to re-program)
 * Measuring microcontroller Vdd without using an input pin
 * Very-low power sleep mode of ATTINY 0 and 1 series
 * Very small form factors
