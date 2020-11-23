@@ -89,16 +89,20 @@ The ADC reading is scaled to 32767 (=20V) and transmitted. along with all other 
 PA7 is low when the switch input is read so either switch will be detected. If a switch is detected, PA7 is then set high and UPDI read again. If the reading is near 1023 then it must be SW2 pressed.
 
 **Power:** the operating range of a rechargeable lithium cell is 3.6-4.2V. There are low drop-out regulator that can manage a 0.6V dropand have <10uA quiescent current but a diode works fine if a large decoupling capacitor is used. The 0.6V typical diode drop brings the voltage within U2's rating of 3-3.6V. Well it would do with the nominal drop, but at the low current taken the drop is ~0.5V so the spec is exceeded by 0.1V on a full cell. Very unlikly to cause a problem.
+I tested current draw with a few cheap NRF24L01+ modules from a batch I bought from Aliexpress. The receiver took 30-40uA during sleep. The MPU should take 6uA max in idle mode so the radio modules were taking far more tha the 6uA maximum in the spec. I read that many cheap Chinese ones are clones of the Nordic chip, some with far worse power use than mine.
+I could not get the MPU's power-down mode to work but it would only save 6uA max anyway.
+The MPU was taking over 2mA in sleep until I noticed I had not diabled the brown-out detector (BoD). Read the compile advice in the source code onhow to do this.
 
 **Multi-use of PA7**: I orginally modified the RF24 library for U2 to use only 4 pins (SCKM MOSIM MISO & CSN) to drive U2. CE was tied high. CE turns the chip on and off and I found that even when powered-down with the library call the chip used far more than the specified idle current, and using a modifed library gave update problems.
 There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It al;so needs more components.
 It was cleaner to use the normal 5-pin connectin and re-use pins. Using MISO as an ADC input when CSN is high was straighforward - U2 dos not drive MISO then. CE is more complex.
-U2 dosn't mind if CE is pulsed high when idle so I use PA7 = CE for dring the LED, driving negative input test bias and for reading SW2.
+U2 doesn't mind if CE is pulsed high when idle so I use PA7 = CE for dring the LED, driving negative input test bias and for reading SW2.
 
-**Programming header J1:** I've standardised on this 0.1in pitch make header for my AVR series 0/1 projects. The cut off pins 3 prevents mis-connection (the programmer has a blanked hole for that pin)  and it's small. The programmer drives pin 2 with 3.3V to power targets if needed. A self powered target can use pin 2 for something else. Here it is Vin.
+**Programming header J1:** I've standardised on this 0.1in pitch make header for my AVR series 0/1 projects. The cut off pins 3 provides keying (the programmer has a blanked hole for that pin). The programmer drives pin 2 with 3.3V to power targets if needed. A self powered target can use pin 2 for something else. Here it is Vin.
 I have extended the header for other project so that one header does all interfacing as well as programming. UPDI remains at one end so that position keying is maintained.
 
 #### Receiver
 
 ![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
 
+This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. U3 has its own regulator to decouple it from digital noise on the OLED power rail. C2 is larger than the 10uF usually used to get acceptable radio range but these caps are tiny and cheap.
