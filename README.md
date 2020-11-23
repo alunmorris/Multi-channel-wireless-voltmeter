@@ -95,8 +95,8 @@ There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 b
 It was cleaner to use the normal 5-pin connectin and re-use pins. Using MISO as an ADC input when CSN is high was straighforward - U2 dos not drive MISO then. CE is more complex.
 U2 dosn't mind if CE is pulsed high when idle so I use PA7 = CE for dring the LED, driving negative input test bias and for reading SW2.
 
-
-
+**Programming header J1:** I've standardised on this 0.1in pitch make header for my AVR series 0/1 projects. The cut off pins 3 prevents mis-connection (the programmer has a blanked hole for that pin)  and it's small. The programmer drives pin 2 with 3.3V to power targets if needed. A self powered target can use pin 2 for something else. Here it is Vin.
+I have extended the header for other project so that one header does all interfacing as well as programming. UPDI remains at one end so that position keying is maintained.
 
 #### Receiver
 
