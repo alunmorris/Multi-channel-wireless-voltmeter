@@ -89,6 +89,15 @@ The ADC reading is scaled to 32767 (=20V) and transmitted. along with all other 
 PA7 is low when the switch input is read so either switch will be detected. If a switch is detected, PA7 is then set high and UPDI read again. If the reading is near 1023 then it must be SW2 pressed.
 
 **Power:** the operating range of a rechargeable lithium cell is 3.6-4.2V. There are low drop-out regulator that can manage a 0.6V dropand have <10uA quiescent current but a diode works fine if a large decoupling capacitor is used. The 0.6V typical diode drop brings the voltage within U2's rating of 3-3.6V. Well it would do with the nominal drop, but at the low current taken the drop is ~0.5V so the spec is exceeded by 0.1V on a full cell. Very unlikly to cause a problem.
+
+**Multi-use of PA7**: I orginally modified the RF24 library for U2 to use only 4 pins (SCKM MOSIM MISO & CSN) to drive U2. CE was tied high. CE turns the chip on and off and I found that even when powered-down with the library call the chip used far more than the specified idle current, and using a modifed library gave update problems.
+There is a 3-pin inteface mode in RF24 (using bit-banging) for the ATTINY84/85 but I could not make it work with the ATTINY402. It al;so needs more components.
+It was cleaner to use the normal 5-pin connectin and re-use pins. Using MISO as an ADC input when CSN is high was straighforward - U2 dos not drive MISO then. CE is more complex.
+U2 dosn't mind if CE is pulsed high when idle so I use PA7 = CE for dring the LED, driving negative input test bias and for reading SW2.
+
+
+
+
 #### Receiver
 
 ![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
