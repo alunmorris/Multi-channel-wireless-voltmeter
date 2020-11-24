@@ -83,6 +83,8 @@ In eeschema/Kicad .sch format.
 
 ![Transmitter](https://user-images.githubusercontent.com/4630866/99911591-6814d880-2ced-11eb-897c-5faba158c2f9.png)
 
+![Transmitter](https://user-images.githubusercontent.com/4630866/100108330-923bd700-2e62-11eb-89fd-27a9ea70dc43.jpg)
+
 **How it works**
 **Vin** is divided by R2/(R4+R5)so that 20V becomes 1.1V - the ADC reference. R4 calibrates the result.
 
