@@ -1,5 +1,6 @@
 /*   Multi-channel wireless voltmeter display using NRF24L01+ and 128 x 32 I2C OLED.
-
+     20 Nov 2020
+     
      Receives voltage data from senders and displays them (up to 4) on a 0.91" OLED display.
      The Mode button rotates around display modes:
      1. Summary display (4 channels): Row 1: '1 vv.vv*?2 nn.nn*?
@@ -25,33 +26,6 @@
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  version 3 as published by the Free Software Foundation.
-
-  010920 New from RF24 lib Getting Started Handling Data
-  020920 Change start text
-  170920 Reduce loop delay to 10ms frm 1000s  - was causing echo rx timeouts at transmitter
-  250920 Remove timestamp in myData, add status char
-  270920 Add version number in data struct
-  280920 Add unused field to data struct for future compatibility. Print Address of Tx. Add 5 pipes
-         Remove echo. Add OLED 128x32display
-  290920 Debug. Add notificatin if V not updated in n sec.
-  300920 Use scale factor sent by sender. Use dtostrf to format printing v
-  021020 Fix typos in debug
-  071020 Change pin nos. Add chech radio is present. Print channel no00000000. Print only 1 decimal
-  131020 Handle over-range and -ve V flags (=max +ve val or max -ve val)
-  011120 Handle low Vdd flag. Change status char to byte with bit flags
-  031120 Add low and empty battery symbol: new folder libraries/MyFonts
-  051120 Add noise filter option. Show 2 decimals, delete ':' to make room. Make voltage no always 5 chars long: nn.nn
-  061120 Don't print background first. Print each channel inc channel no each time.
-  061120a Add receive voltage min & max
-  081120 Add button to switch between Summary view (all channels) and detail of each channel - eg min, max. Simple single cahn view
-  101120 Improve single chan view. Add Vdd display
-  111120 In single chan view: make Bat voltage disappear after a delay, to make screen neater. Add LOOP-TIME const. Change chan names
-  121120 Don't blank Vdd in single view if Vdd low received. vddValue field = 0  means no Vdd value.
-  171120 Tidy comments. Auto format. remove unused variables
-  181120 Tidy. Code tweak in oledPrintV
-  191120 Inc;lude fn prototypes
-  201120 Change name
-  211120 Make Tx power level a macro. Change to low.
 */
 #include <SPI.h>
 #include "RF24.h"
@@ -64,7 +38,6 @@
 /*
  *Options to set
  */
-#define DEBUG true
 #define LOST_INPUT_TIMEOUT  5000    //in ms
 #define NOISE_FILTER true           //reduce jitter in diplayed voltage
 #define SHOW_VDD true               //display Vdd in single view?
@@ -143,14 +116,6 @@ struct dataStruct {
   char unused[1];                   //padding for compatibility
 } myData;
 
-//macros
-#if DEBUG
-#define DPRINT(...) Serial.print(__VA_ARGS__)  //variadic macro
-#define DPRINTLN(...) Serial.println(__VA_ARGS__)
-#else
-#define DPRINT(...)  //do nothing
-#define DPRINTLN(...)
-#endif
 /*
  *prototypes
  */
@@ -233,8 +198,6 @@ void loop() {
     displayMode = (displayMode == CHANNELS) ? SUMMARY : displayMode + 1; 
     oled.clear();                   //always clear on mode change
     timeOfLastDisplayModeChange = millis();
-    DPRINT(" Mode now ");
-    DPRINTLN(displayMode);
     if (displayMode == SUMMARY) {   //back to summary
       oledDisplaySummaryBackground();
     }
@@ -249,13 +212,6 @@ void loop() {
       stat[pipenum] = (uint16_t) myData.stat; //also flags no input yet on this channel
       lastInputTime[pipenum] = millis();
     }
-
-    DPRINT(F("Channel ")); DPRINT(pipenum);
-    DPRINT(F(": ")); DPRINT(((float) receivedValue[pipenum]) * myData.fullScaleV / FULL_SCALE); DPRINT(F("V "));
-    DPRINT(((float) myData.valueMin) * myData.fullScaleV / FULL_SCALE); DPRINT(F("V min "));
-    DPRINT(((float) myData.valueMax) * myData.fullScaleV / FULL_SCALE); DPRINT(F("V max "));
-    DPRINT(F(" Stat:")); DPRINT(myData.stat);
-    DPRINT(F(" VddValue:")); DPRINTLN(myData.vddValue);
   }
 /*
  *check for channels that have not had an update in LOST_INPUT_TIMEOUT ms
