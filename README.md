@@ -125,4 +125,4 @@ I have extended the header for another project so that one header does all inter
 
 ![Receiver](https://user-images.githubusercontent.com/4630866/99911593-69460580-2ced-11eb-8d88-94d7b3283639.png)
 
-This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. The OLED is powered by the nano 3.3V output but U3 has its own regulator to give a clean power supply. Range is be <1m with a dirty supply or RF leakage is the nano is mounted too close.
+This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. The OLED is powered by the nano 3.3V output but U3 has its own regulator to give a clean power supply. Range can be <1m with a dirty supply or RF leakage is the nano is mounted too close.
