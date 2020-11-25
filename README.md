@@ -7,7 +7,7 @@ Developed on Auduino
 ![Display](https://user-images.githubusercontent.com/4630866/100222669-55c7b400-2f12-11eb-9a6c-6d81f5a7e3a6.jpg)
 
 ## Notable design features
-* Transmitter code fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
+* Transmitter code just about fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
 * Display code <16KB and so fits on eg ATMEGA168P or 328P eg an Arduino Uno or nano.
 * Pin saving by multiple use of microcontroller (MPU) pins:
   * SPI chip-enable, LED drive, negative input test mode and switch A/B detection on one pin
