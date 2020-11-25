@@ -21,6 +21,7 @@ The display receives voltage data from up to 4 transmitters (one channel each) a
 Features:
 * 0-20V range, can be configured by resistor selection. 0.01V resolution.
 * Accuracy better than 1% (by calibration). May deteriorate - depends on resistor quality.
+* Temperature variation is mostly dependent on the resistors. The MPU ADC is +/-0.1% over 0 to 40C. 
 * Positive voltage only. Over voltage and undervoltage (negative) indication. +/-100V input tolerant.
 * 1Mohm input impedance, can be configured by resistor selection
 * Sample rate once/s, configurable
