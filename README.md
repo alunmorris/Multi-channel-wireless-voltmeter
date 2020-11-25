@@ -4,6 +4,8 @@ The transmitter is optimised for low power and will run from a battery for weeks
 Range is a few meters to 100m depending on how well the radio module is isolated from the controller, and the power setting.
 Developed on Auduino
 
+![Display](https://user-images.githubusercontent.com/4630866/100222262-c15d5180-2f11-11eb-8e9c-131aa6c932d5.jpg)
+
 ## Notable design features
 * Transmitter code fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
 * Display code fits on ATMEGA168P or 328P eg an Arduino Uno or nano.
