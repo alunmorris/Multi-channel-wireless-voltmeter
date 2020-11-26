@@ -135,4 +135,4 @@ I have extended the header for another project so that one header does all inter
 
 This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. The OLED is powered by the nano 3.3V output but U3 has its own regulator to give a clean power supply. 
 
-**Construction** The range may be poor or non-existent if the NRF24L01+ is mounted right behind the MPU part.
+**Construction** The range may be poor or non-existent if the NRF24L01+ is mounted right behind and parallel to the MPU part.
