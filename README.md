@@ -20,7 +20,7 @@ Developed on Auduino
   * UPDI programming and switch input on one pin (without needing a high-voltage UPDI programmer to re-program)
 * Measuring MPU Vdd without using an input pin
 * Very-low power sleep mode of ATTINY 0 and 1 series
-* Very small form factors
+* Small form factors
 
 ## Function Overview
 The display receives voltage data from up to 4 transmitters (one channel each) and shows them on a 128x32 OLED display.
