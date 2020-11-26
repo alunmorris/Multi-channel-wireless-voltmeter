@@ -9,7 +9,7 @@ I did the project as an excercise in minimalism.
 
 Developed on Auduino
 
-![Display top no bat small-](https://user-images.githubusercontent.com/4630866/100225638-6c700a00-2f16-11eb-95b6-82a6a762f62f.jpg)
+![Display top no bat small-](https://user-images.githubusercontent.com/4630866/100372525-44a9a080-3001-11eb-8f44-4add414d4948.jpg)
 
 ## Notable design features
 * Transmitter code just about fits on the 8-pin 4KB flash ATTINT402. It should compile on ATTINY412 and larger AVR 0 and 1 series chips. UPDI (but not HV type) programmer needed.
