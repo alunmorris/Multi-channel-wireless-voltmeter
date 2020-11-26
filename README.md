@@ -41,6 +41,7 @@ Features:
 * MPU sums four voltage readings to reduce noise and to improved resolution of the 10-bit ADC
 * LED flashes 20 times if radio IC not responding on power-up
 * LED flashes briefly on each failed data transmission
+* The buttons are read 16 times a second
 
 ### Display operation
 * Displays version info, radio channel and lost-signal timeout on power-up/ reset
