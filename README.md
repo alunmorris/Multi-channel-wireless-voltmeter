@@ -2,6 +2,7 @@
 A multi-channel wireless (2.4GHz) voltmeter display using ATTINY402, Arduino nano, NRF24L01+ and 128x32 I2C OLED.
 The transmitter is optimised for low power and will run from a battery for weeks or months depending on useage, sample frequency and of course battery capacity.
 Range is a few meters to tens of meters depending on how well the radio module is isolated from the controller, and the RF power setting.
+I did the project as an excercise in minimalism.
 Developed on Auduino
 
 ![Display top no bat small-](https://user-images.githubusercontent.com/4630866/100225638-6c700a00-2f16-11eb-95b6-82a6a762f62f.jpg)
@@ -77,7 +78,7 @@ Compiled to 3986 bytes with Board Manager megaTinyCore version 2.1.2 or 2.1.5 (t
 ### Display Code
 One .ino file and two .h files (in /library) for the custom font. Uses SPI, RF24, Wire, SSD1306Ascii and SSD1306AsciiWire libraries.
 
-Compiled to 14118 bytes with 'noise filter' and 'show Vdd' options used.
+Compiled to 11856 bytes with 'noise filter' and 'show Vdd' options used.
 
 ### Circuit diagrams
 In eeschema/Kicad .sch format.
