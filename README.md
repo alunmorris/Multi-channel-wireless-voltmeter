@@ -35,6 +35,7 @@ Features:
 * Minimum and maximum display
 * Transmitter low battery warning and battery voltage display. Low battery protection.
 * Transmitter auto power-off
+* TRansmitter retries if the data is not received
 * Display modes: all channels or single channel with more detais
 
 ### Transmitter operation
