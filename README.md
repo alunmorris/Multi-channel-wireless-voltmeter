@@ -5,7 +5,7 @@ The transmitter is optimised for low power and will run from a battery for weeks
 
 Range is a few meters to tens of meters depending on how well the radio module is isolated from the controller, and the RF power setting.
 
-I did the project as an excercise in minimalism.
+I did the project as an exercise in minimalism.
 
 Developed on Auduino
 
@@ -72,7 +72,7 @@ Over voltage shows as -----, under voltage as -0.00, no data is just blank
  The lost signal and battery warnings appear the same as in the Summary view.
 
 ## Repository overview
-The repositry contains C++ code for the Arduino IDE and circuit diagrams. The Transmitter and Receiver are in seperate folders. Read through the options to set and the compile settings guidance.
+The repositry contains C++ code for the Arduino IDE and circuit diagrams. The Transmitter and Receiver are in separate folders. Read through the options to set and the compile settings guidance.
 
 They have been complied on Arduino 1.8.13.
 
@@ -137,3 +137,11 @@ I have extended the header for another project so that one header does all inter
 This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. The OLED is powered by the nano 3.3V output but U3 has its own regulator to give a clean power supply. 
 
 **Construction** The range may be poor or non-existent if the NRF24L01+ is mounted right behind and parallel to the MPU part.
+
+##Car battery monitor application
+I have fitted a transmitter inside an OBD-2 plug (the European car diagnostic standard). 12V is always live on the interface. A 3.3V regulator powers the MPU and NRF24L01+.
+
+![DSC_2033](https://user-images.githubusercontent.com/4630866/100895245-3eaa3880-34b5-11eb-8d38-03aa88de6b66.JPG)
+
+![DSC_2034](https://user-images.githubusercontent.com/4630866/100895237-3ce07500-34b5-11eb-9642-10c952fc09b1.JPG)
+
