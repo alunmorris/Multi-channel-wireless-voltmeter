@@ -1,13 +1,13 @@
 # Multi-channel-wireless-voltmeter
 A multi-channel wireless (2.4GHz) voltmeter display using ATTINY402, Arduino nano, NRF24L01+ and 128x32 I2C OLED.
 
-The transmitter is optimised for low power and will run from a battery for weeks or months depending on useage, sample frequency and of course battery capacity.
+The transmitter is optimised for low power and will run from a battery for weeks or months depending on usage, sample frequency and of course battery capacity.
 
 Range is a few meters to tens of meters depending on how well the radio module is isolated from the controller, and the RF power setting.
 
-I did the project as an exercise in minimalism.
+I did the project as an exercise in minimalism. Demo at https://youtu.be/bwuttJC_tyY
 
-Developed on Auduino
+Developed on Arduino
 
 ![Display top no bat small-](https://user-images.githubusercontent.com/4630866/100372525-44a9a080-3001-11eb-8f44-4add414d4948.jpg)
 
