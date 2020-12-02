@@ -139,7 +139,7 @@ This is simply an NRF24L01+ and an OLED display wired to an Arduino nano. The OL
 **Construction** The range may be poor or non-existent if the NRF24L01+ is mounted right behind and parallel to the MPU part.
 
 ##Car battery monitor application
-I have fitted a transmitter inside an OBD-2 plug (the European car diagnostic standard). 12V is always live on the interface. A 3.3V regulator powers the MPU and NRF24L01+.
+I have fitted a transmitter inside an OBD-2 plug (the European car diagnostic standard). 12V is always live on the interface. A 3.3V regulator powers the MPU and NRF24L01+. The switches and negative voltage test components are omitted.
 
 ![DSC_2034_300x198](https://user-images.githubusercontent.com/4630866/100904465-f55ee680-34be-11eb-9bbf-50b8507cc48f.JPG) ![DSC_2033_300x254](https://user-images.githubusercontent.com/4630866/100904035-7b2e6200-34be-11eb-94e8-f1383603a0f9.JPG)
 
