@@ -1,6 +1,6 @@
 /*   Wireless voltmeter transmitter using ATTINY402 and NRF24L01+.
 ****************************************************************************************************
-     26 Nov 2020 Alun Morris
+     21 Dec Alun Morris
 
      Optimised for low power (depending on options). Will stop sendng data after a timeout.
      Optional On and Off button s (see below for function) 
