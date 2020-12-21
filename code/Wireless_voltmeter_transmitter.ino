@@ -55,7 +55,7 @@
 #define SUBVERSION 0        //byte so get version eg 21.17
 #define SLEEP true          //use sleep mode to time loop to cut power. Corrupts serial output.
 #define SEND_MINMAX true    //track and send min V and max V. Values reset by hibernation
-#define LOOPTIME 1          //s. How often to transmit. random 0s to 7s added at boot
+#define LOOPTIME 1          //s. How often to transmit
 #define LOOP_TIME_RANDOMISE true    //Option. Loop extended by random 0 to 1023us to help
                                     // avoid Tx collisions
 #define LOOPS_BEFORE_HIBERNATE 35   //sec. How long before hibernating. Must be > LONG_PRESS_TIME 
